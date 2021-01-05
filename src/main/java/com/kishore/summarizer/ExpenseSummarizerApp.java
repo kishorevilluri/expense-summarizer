@@ -1,5 +1,6 @@
 package com.kishore.summarizer;
 
+import com.kishore.summarizer.handlers.DataHandler;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -17,11 +18,10 @@ public class ExpenseSummarizerApp {
         String statementText = docText.getText(doc);
         int transIndex = statementText.indexOf("Spend Amount");
         int feesIndex = statementText.lastIndexOf("Total Fees for this Period");
-        String transactions = statementText.substring(transIndex, feesIndex);
-        String[] s = transactions.split("\n");
-        for(String ss : s){
-            System.out.println(ss);
-        }
+        String transactionsString = statementText.substring(transIndex, feesIndex);
+        String[]  transactionsArray = transactionsString.split("\n");
+
+        DataHandler.retrieveTransactions(transactionsArray);
         doc.close();
     }
 }
