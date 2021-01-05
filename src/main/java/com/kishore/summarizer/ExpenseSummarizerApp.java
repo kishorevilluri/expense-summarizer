@@ -7,11 +7,6 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class ExpenseSummarizerApp {
     public static void main(String[] args) throws IOException {
@@ -24,6 +19,9 @@ public class ExpenseSummarizerApp {
         int feesIndex = statementText.lastIndexOf("Total Fees for this Period");
         String transactions = statementText.substring(transIndex, feesIndex);
         String[] s = transactions.split("\n");
+        for(String ss : s){
+            System.out.println(ss);
+        }
         doc.close();
     }
 }
