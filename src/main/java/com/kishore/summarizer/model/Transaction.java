@@ -3,7 +3,7 @@ package com.kishore.summarizer.model;
 public class Transaction {
     private String date;
     private String service;
-    private Integer amount;
+    private String amount;
 
     public String getService() {
         return service;
@@ -13,11 +13,11 @@ public class Transaction {
         this.service = service;
     }
 
-    public Integer getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
@@ -27,5 +27,14 @@ public class Transaction {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "date='" + date + '\'' +
+                ", service='" + service + '\'' +
+                ", amount='" + amount + '\'' +
+                '}';
     }
 }
