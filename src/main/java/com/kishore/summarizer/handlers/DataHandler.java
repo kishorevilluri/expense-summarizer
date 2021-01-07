@@ -19,8 +19,15 @@ public class DataHandler {
                 String[] tranData = transaction.split("\\$",2);
                 tran.setService(tranData[0]);
                 tran.setAmount(tranData[1]);
-                System.out.println(tran.toString());
+                transactions.add(tran);
+            }else if(transactions.size() > 1) {
+                Transaction previousTransaction = transactions.get(transactions.size() - 1);
+                StringBuilder previousTranService = new StringBuilder(previousTransaction.getService());
+                previousTransaction.setService(previousTranService.append(transaction).toString());
             }
+        }
+        for (Transaction trans : transactions){
+            System.out.println(trans.getDate() + "    " + trans.getService() + "    " + trans.getAmount());
         }
     }
 }
