@@ -6,7 +6,7 @@ import java.util.List;
 
 public class DataHandler {
 
-    public static void retrieveTransactions(String[] transactionsArray) {
+    public static List<Transaction> retrieveTransactions(String[] transactionsArray) {
         List<Transaction> transactions = new ArrayList<>();
         String dateRegex = "\\d{2}\\/\\d{2}\\/\\d{2}";
         for(String transaction : transactionsArray){
@@ -18,7 +18,7 @@ public class DataHandler {
                 transaction = transaction.replaceAll(tranDate,"");
                 String[] tranData = transaction.split("\\$",2);
                 tran.setService(tranData[0]);
-                tran.setAmount(tranData[1]);
+                tran.setAmount(Integer.parseInt(tranData[1]));
                 transactions.add(tran);
             }else if(transactions.size() > 1) {
                 Transaction previousTransaction = transactions.get(transactions.size() - 1);
@@ -29,5 +29,6 @@ public class DataHandler {
         for (Transaction trans : transactions){
             System.out.println(trans.getDate() + "    " + trans.getService() + "    " + trans.getAmount());
         }
+        return transactions;
     }
 }
